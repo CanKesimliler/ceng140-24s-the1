@@ -137,7 +137,7 @@ int main(void)
             {
                 k = rpro;
                 l = rdna;
-                while (k < proteinLen)
+                while (k < proteinLen-1)
                 {
                     k++;
                     l += 3;
