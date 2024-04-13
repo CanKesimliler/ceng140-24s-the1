@@ -41,6 +41,7 @@ int main(void)
     char readingFrame[4];
     int check = 1;
     int k, l;
+    int fuse = 0;
     intrn1Start = intrn1End = intrn2Start = intrn2End = 0;
     ldna = lpro = 0;
     map[(int)'g'] = 0;
@@ -82,7 +83,7 @@ int main(void)
 
     if (findExon3(dnaSequence, proteinSequence, map, &rdna, &rpro) == -1)
     {
-        if(rpro < 0)
+        if (rpro < 0)
         {
             rpro += 2;
             rdna += 5;
@@ -106,7 +107,7 @@ int main(void)
         return 0;
     }
 
-    while (1)
+    while (fuse < 3001)
     {
         readingFrame[0] = dnaSequence[ldna];
         readingFrame[1] = dnaSequence[ldna + 1];
@@ -137,7 +138,7 @@ int main(void)
             {
                 k = rpro;
                 l = rdna;
-                while (k < proteinLen-1)
+                while (k < proteinLen - 1)
                 {
                     k++;
                     l += 3;
@@ -168,7 +169,11 @@ int main(void)
             fflush(NULL);
             return 0;
         }
+        fuse++;
     }
+    printf("NONE");
+    fflush(NULL);
+    return 0;
 }
 
 int findExon2(char *dnaSequence, char *proteinSequence, int *map, int ldna, int lpro, int rdna, int rpro)
